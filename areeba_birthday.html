@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f7dff0">
+<title>For Areeba ♡</title>
+<style>
+:root{--ink:#674c70;--rose:#b85e99;--soft:#fff7fc}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;overflow-x:hidden;color:var(--ink);font-family:"Palatino Linotype",Palatino,Georgia,serif;background:linear-gradient(145deg,#fff5fb,#fbe1f1 38%,#e9e1ff 75%,#fff7fc)}
+button{font:inherit;cursor:pointer}
+.sky{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.star{position:absolute;width:3px;height:3px;border-radius:50%;background:white;box-shadow:0 0 10px 3px #fff8;animation:twinkle 3s ease-in-out infinite alternate}
+@keyframes twinkle{from{opacity:.25;transform:scale(.7)}to{opacity:1;transform:scale(1.5)}}
+.floaty{position:absolute;bottom:-60px;opacity:.7;animation:rise linear forwards}
+@keyframes rise{to{transform:translateY(-115vh) rotate(360deg);opacity:0}}
+.page{position:relative;z-index:1;min-height:100svh;width:min(900px,92%);margin:auto;padding:32px 0 50px;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;animation:pageIn .8s ease both}
+.page.active{display:flex}
+@keyframes pageIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+.moon{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,#fffdf8,#ffe8f6);box-shadow:0 0 28px #fff,0 0 70px #e7b4eeaa;position:relative;margin-bottom:22px}
+.moon:after{content:"";position:absolute;width:80px;height:80px;border-radius:50%;background:#f3d8f1;left:22px;top:-8px;opacity:.72}
+.eyebrow{letter-spacing:.22em;text-transform:uppercase;font:11px Arial,sans-serif;color:#a76b9b}
+h1{font-size:clamp(3rem,10vw,6.7rem);line-height:1;margin:10px 0 18px;font-weight:normal;color:var(--rose);text-shadow:0 4px 0 #fff8,0 0 30px #fff}
+h2{font-weight:normal;font-size:clamp(2rem,7vw,3.5rem);color:var(--rose);margin:12px 0 18px}
+p{line-height:1.85}
+.subtitle{font-size:clamp(1.08rem,3.5vw,1.4rem);max-width:590px;margin:0 auto 26px;color:#765d83}
+.card{width:100%;padding:clamp(25px,6vw,55px);border:1px solid #fff;background:#ffffffa8;backdrop-filter:blur(10px);border-radius:30px;box-shadow:0 16px 45px #b889bd22}
+.primary{border:1px solid #fff;background:linear-gradient(120deg,#fff9fd,#f4d5ee);color:#96568e;border-radius:999px;padding:14px 23px;box-shadow:0 8px 25px #c38bb455;transition:.25s;margin:8px}
+.primary:hover{transform:translateY(-3px);box-shadow:0 12px 30px #c38bb477}
+.ribbon{color:#bd77aa;font-size:1.5rem;letter-spacing:.3em;margin:12px 0}
+.poem{font-size:clamp(1.05rem,3.5vw,1.3rem);line-height:2.0;margin:20px auto;max-width:720px}
+.poem p{margin:0 0 14px}
+.poem .em{color:#b75f9b}
+.small{font-size:clamp(1rem,3vw,1.18rem);max-width:640px;margin:0 auto 22px}
+.page-number{font:11px Arial,sans-serif;letter-spacing:.2em;color:#a77da7;margin-top:26px}
+footer{position:relative;z-index:1;text-align:center;font:11px Arial,sans-serif;letter-spacing:.12em;color:#a77da7;padding:15px 10px 28px}
+
+.envelope-scene{width:min(390px,88vw);height:270px;position:relative;margin:25px auto 28px;perspective:1000px;filter:drop-shadow(0 18px 22px #a56e9d33)}
+.envelope{position:absolute;inset:35px 0 0;height:205px;border-radius:8px;background:linear-gradient(145deg,#f5c9e5,#e8b4d7);overflow:visible}
+.envelope:before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,#fce6f4,#e9b4d8);clip-path:polygon(0 0,50% 57%,100% 0,100% 100%,0 100%);z-index:3;border-radius:8px}
+.envelope-flap{position:absolute;left:0;top:0;width:100%;height:120px;background:linear-gradient(135deg,#f9d9ec,#d99ac8);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform 1s ease;z-index:5;backface-visibility:hidden}
+.envelope-seal{position:absolute;z-index:6;left:50%;top:77px;transform:translateX(-50%);width:45px;height:45px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#fff8fd,#f5c5e4);border:1px solid #fff;color:#b85e99;font-size:23px;box-shadow:0 4px 12px #a15b8b33;transition:opacity .3s ease}
+.letter-peek{position:absolute;z-index:2;left:7%;width:86%;height:165px;bottom:15px;border-radius:6px;background:#fffafd;border:1px solid #f2d9ea;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:16px;color:#a35b91;transition:transform 1s ease .25s}
+.letter-peek strong{font-size:1.3rem;font-weight:normal}.letter-peek span{font:10px Arial,sans-serif;letter-spacing:.18em;margin-top:10px}
+.envelope-scene.open .envelope-flap{transform:rotateX(180deg);z-index:1}.envelope-scene.open .envelope-seal{opacity:0}.envelope-scene.open .letter-peek{transform:translateY(-105px)}
+.letter-reveal{display:none;width:100%;max-width:700px;margin:8px auto 20px;padding:22px 25px;background:#fffafedb;border:1px solid #fff;border-radius:20px;box-shadow:0 10px 35px #b889bd25;animation:pageIn .8s ease both}.letter-reveal.show{display:block}.letter-reveal p{margin:0;color:#86658b;line-height:1.8}
+.gallery-card{width:100%;padding:clamp(22px,5vw,42px);border:1px solid #fff;background:#ffffffb8;backdrop-filter:blur(10px);border-radius:30px;box-shadow:0 16px 45px #b889bd22}
+.memory-frame{display:none;animation:memoryIn .65s ease both;margin:20px auto 12px;max-width:650px}
+.memory-frame.active{display:block}
+.memory-frame img,.memory-frame video{display:block;width:100%;max-height:62svh;object-fit:contain;background:#3a1b32;border:8px solid #fff;border-radius:16px;box-shadow:0 12px 32px #8e5a8b38}
+.memory-caption{font-size:1rem;line-height:1.7;color:#86678b;margin:14px auto 4px}
+.memory-count{font:11px Arial,sans-serif;letter-spacing:.16em;color:#a77da7;margin:15px 0}
+@keyframes memoryIn{from{opacity:0;transform:translateY(12px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="sky" id="sky" aria-hidden="true"></div>
+
+<section class="page active" id="p1">
+  <div class="eyebrow">sealed with a little love</div>
+  <h1 style="font-size:clamp(2.7rem,9vw,5rem)">For Areeba ♡</h1>
+  <p class="subtitle">A little letter, just for you. 🎀</p>
+  <div class="envelope-scene" id="envelopeScene" aria-label="A pink envelope with a heart seal">
+    <div class="letter-peek"><strong>To Areeba ♡</strong><span>A LITTLE NOTE FROM THE HEART</span></div>
+    <div class="envelope"><div class="envelope-flap"></div><div class="envelope-seal">♡</div></div>
+  </div>
+  <div class="letter-reveal" id="letterReveal"><div class="ribbon">✧ 🎂 💌 ✧</div><h2 style="font-size:clamp(2rem,7vw,3rem);margin:0 0 12px">Happy Birthday, Areeba! 🎀</h2><p style="font-size:1.08rem;line-height:1.9;margin:0 auto 22px;max-width:580px">May your birthday be filled with happiness, gentle moments, beautiful surprises, and countless reasons to smile. May Allah bless you with peace, success, good health, and all the happiness your heart deserves. Keep shining, Areeba. You deserve a day as lovely as your smile. 🌷✨</p><div class="ribbon">A little note from the heart ♡</div><h2 style="font-size:1.65rem;margin:0 0 12px">Aapki aankhon ke naam 🎀</h2><div class="poem">
+    <p>Aap itni khoobsoorat hain ke aapko dekhne ke liye<br><span class="em">aankhein udhaar li jaa sakti hain. 🎀</span></p>
+    <p>Sadiyan guzaari jaa sakti hain, 🎀<br>waqt ki raftaar ghataai jaa sakti hai, 🎀<br>phoolon ki khoobsoorti ko madham kiya jaa sakta hai. 🎀</p>
+    <p>Aapki aankhon mein qaus-e-quzah se zyada rang chhupe hain, 🎀<br>jaam se zyada nasha hai. 🎀</p>
+    <p>Khuda ki qudrat ki sabse khoobsurat cheez bayan karne ka mauqa mile,<br>to main aapki aankhein bayan karoon ga. 🎀</p>
+    <p>Aapki aankhein aisi hain ke poore adab mein<br>aapki aankhon par likha jaa sakta hai. 🎀</p>
+    <p>Aapki aankhon ki khoobsoorti bayan karte hue<br>main apni tamaam chaar din ki umr daraz guzaar sakta hoon. 🎀</p>
+    <p>Aapki aankhon pe likhte hue apne baalon ki safedi dekh sakta hoon. 🎀</p>
+    <p>Aapki aankhein dekhte dekhte apni beenaai se mehroom ho sakta hoon. 🎀</p>
+  </div></div>
+  <button class="primary" id="openLetterBtn">Open your letter 💌</button>
+  <button class="primary" id="continueBtn" style="display:none" onclick="go(2)">Continue to your birthday surprise ✨</button>
+  <div class="page-number">01 · A LITTLE BEGINNING</div>
+</section>
+
+<section class="page" id="p2">
+  <div class="card">
+    <div class="ribbon">✧ 🎀 ✧</div>
+    <div class="eyebrow">today is all about you</div>
+    <h2>Happy Birthday,<br>Areeba</h2>
+    <p class="small">May your day be filled with little moments that make you smile, people who make you feel loved, and memories you’ll want to keep forever. 🌷</p>
+    <div class="ribbon">☾ ✦ ☽</div>
+    <button class="primary" onclick="go(3)">There’s a little letter for you 💌</button>
+  </div>
+  <div class="page-number">02 · YOUR SPECIAL DAY</div>
+</section>
+
+<section class="page" id="p3">
+  <div class="card">
+    <div class="eyebrow">a few words from my heart</div>
+    <h2>For your eyes 🎀</h2>
+    <div class="ribbon">୨୧</div>
+    <div class="poem">
+      <p>Aap itni khoobsoorat hain ke aapko dekhne ke liye<br><span class="em">aankhein udhaar li jaa sakti hain. 🎀</span></p>
+      <p>Sadiyan guzaari jaa sakti hain, 🎀<br>waqt ki raftaar ghataai jaa sakti hai, 🎀<br>phoolon ki khoobsoorti ko madham kiya jaa sakta hai. 🎀</p>
+      <p>Aapki aankhon mein qaus-e-quzah se zyada rang chhupe hain, 🎀<br>jaam se zyada nasha hai. 🎀</p>
+      <p>Khuda ki qudrat ki sabse khoobsurat cheez bayan karne ka mauqa mile,<br>to main aapki aankhein bayan karoon ga. 🎀</p>
+      <p>Aapki aankhein aisi hain ke poore adab mein<br>aapki aankhon par likha jaa sakta hai. 🎀</p>
+      <p>Aapki aankhon ki khoobsoorti bayan karte hue<br>main apni tamaam chaar din ki umr daraz guzaar sakta hoon. 🎀</p>
+      <p>Aapki aankhon pe likhte hue apne baalon ki safedi dekh sakta hoon. 🎀</p>
+      <p>Aapki aankhein dekhte dekhte apni beenaai se mehroom ho sakta hoon. 🎀</p>
+    </div>
+    <div class="ribbon">✧･ﾟ: *✧･ﾟ:* 🎀 *:･ﾟ✧*:･ﾟ✧</div>
+    <button class="primary" onclick="go(4)">One last birthday wish 🌙</button>
+  </div>
+  <div class="page-number">03 · YOUR POETRY</div>
+</section>
+
+<section class="page" id="p4">
+  <div class="gallery-card">
+    <div class="ribbon">🎀 ✦ 🎀</div>
+    <div class="eyebrow">little pieces of our story</div>
+    <h2>Memory Gallery 💌</h2>
+    <p class="small">Har “Next” ke saath ek aur memory… take your time. ♡</p>
+
+    <div class="memory-frame active" data-memory="0">
+      <img src="memory1.jpg" alt="Memory 1">
+      <p class="memory-caption">A little memory to keep close. 🎀</p>
+    </div>
+    <div class="memory-frame" data-memory="1">
+      <img src="memory2.jpg" alt="Memory 2">
+      <p class="memory-caption">Some conversations become precious memories. 💗</p>
+    </div>
+    <div class="memory-frame" data-memory="2">
+      <img src="memory3.jpg" alt="Memory 3">
+      <p class="memory-caption">Our little Tom-and-Jerry moment. 🐭🎀</p>
+    </div>
+    <div class="memory-frame" data-memory="3">
+      <img src="memory4.jpg" alt="Memory 4">
+      <p class="memory-caption">Words, wishes, and a smile worth remembering. 🌷</p>
+    </div>
+    <div class="memory-frame" data-memory="4">
+      <img src="memory5.jpg" alt="Memory 5">
+      <p class="memory-caption">One more little piece of this story. ❤️</p>
+    </div>
+    <div class="memory-frame" data-memory="5">
+      <video controls playsinline preload="metadata">
+        <source src="memory-video.mp4" type="video/mp4">
+        Your browser does not support this video.
+      </video>
+      <p class="memory-caption">And a moving memory, just for this little gallery. ✨</p>
+    </div>
+    <div class="memory-count" id="memoryCount">MEMORY 1 OF 6</div>
+    <button class="primary" id="memoryNext">Next memory ✨</button>
+    <button class="primary" onclick="go(5)">Go to the final wish 🌙</button>
+  </div>
+  <div class="page-number">04 · OUR LITTLE MEMORIES</div>
+</section>
+
+<section class="page" id="p5">
+  <div class="card">
+    <div class="ribbon">♡ ✨ ♡</div>
+    <div class="eyebrow">one last little wish</div>
+    <h2>Keep shining,<br>Areeba 🌙</h2>
+    <p class="small">I hope this new year of your life brings you peaceful mornings, happy surprises, kind people, and memories that make you smile long after the moment has passed. May life be gentle with your heart, today and always. 🎀</p>
+    <div class="ribbon">🌸 🦋 🌸</div>
+    <button class="primary" id="wishBtn">Send a sky full of wishes ✨</button>
+    <p id="wishResult" class="small" style="display:none">A thousand stars, a thousand wishes, just for you. ♡</p>
+    <div style="margin:30px auto 22px;line-height:1.9;color:#9b6797;font-size:clamp(1rem,3vw,1.2rem)">
+      From the one who is nothing to you,<br>
+      <span style="font-size:1.5rem;color:#b85e99;font-style:italic">yours, Ahmed ♡</span>
+    </div>
+    <button class="primary" onclick="go(1)">Replay from the beginning ↺</button>
+  </div>
+  <div class="page-number">05 · WITH WARM WISHES</div>
+</section>
+<footer>MADE ESPECIALLY FOR AREEBA · 🎀 ✨</footer>
+<script>
+const sky=document.getElementById('sky');
+for(let i=0;i<75;i++){const s=document.createElement('span');s.className='star';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.animationDelay=Math.random()*4+'s';s.style.animationDuration=2+Math.random()*4+'s';s.style.opacity=.2+Math.random()*.8;sky.appendChild(s)}
+const symbols=['♡','✦','✧','🌸','🎀','🦋'];
+function floatOne(){const f=document.createElement('span');f.className='floaty';f.textContent=symbols[Math.floor(Math.random()*symbols.length)];f.style.left=Math.random()*100+'%';f.style.fontSize=12+Math.random()*20+'px';f.style.animationDuration=9+Math.random()*10+'s';f.style.color=['#d88fbe','#b6a1ed','#fff','#c987b6'][Math.floor(Math.random()*4)];sky.appendChild(f);setTimeout(()=>f.remove(),20000)}
+setInterval(floatOne,800);
+function go(n){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));const next=document.getElementById('p'+n);next.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});for(let i=0;i<12;i++)setTimeout(floatOne,i*60)}
+const openLetterBtn=document.getElementById('openLetterBtn');
+openLetterBtn.addEventListener('click',()=>{
+  const scene=document.getElementById('envelopeScene');
+  scene.classList.add('open');
+  openLetterBtn.disabled=true;
+  openLetterBtn.textContent='Opening your letter… ♡';
+  setTimeout(()=>{
+    document.getElementById('letterReveal').classList.add('show');
+    openLetterBtn.style.display='none';
+    document.getElementById('continueBtn').style.display='inline-block';
+    for(let i=0;i<18;i++)setTimeout(floatOne,i*65);
+  },850);
+});
+let memoryIndex=0;
+const memoryFrames=[...document.querySelectorAll('.memory-frame')];
+document.getElementById('memoryNext').addEventListener('click',()=>{
+  memoryFrames[memoryIndex].classList.remove('active');
+  const oldVideo=memoryFrames[memoryIndex].querySelector('video'); if(oldVideo) oldVideo.pause();
+  memoryIndex=(memoryIndex+1)%memoryFrames.length;
+  memoryFrames[memoryIndex].classList.add('active');
+  document.getElementById('memoryCount').textContent='MEMORY '+(memoryIndex+1)+' OF '+memoryFrames.length;
+  document.getElementById('memoryNext').textContent=memoryIndex===memoryFrames.length-1?'See the first memory again ↺':'Next memory ✨';
+  for(let i=0;i<10;i++)setTimeout(floatOne,i*55);
+});
+document.getElementById('wishBtn').addEventListener('click',()=>{document.getElementById('wishResult').style.display='block';for(let i=0;i<35;i++)setTimeout(floatOne,i*45)});
+</script>
+</body>
+</html>
